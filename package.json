@@ -4,7 +4,8 @@
   "description": "Path validation utility",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --exit \"test/specs/**/*.spec.js\" "
+    "test": "mocha --exit \"test/specs/**/*.spec.js\" ",
+    "new-minor-release": "npm version minor && git push origin master && npm publish"
   },
   "repository": {
     "type": "git",
