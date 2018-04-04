@@ -28,6 +28,7 @@ describe('Invalid paths', () => {
     'file*',
     '/path/to/pattern*',
     'path/**',
+    '\\\\\\server\\share',
   ]
 
   paths.forEach(p => {
