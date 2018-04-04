@@ -1,5 +1,5 @@
-const isValidPath = require('./lib/is-valid-path');
+const isAbsolutePath = require('./lib/is-absolute-path');
 
 module.exports = {
-  isValidPath,
+  isAbsolutePath,
 }
