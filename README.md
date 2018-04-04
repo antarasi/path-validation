@@ -1,8 +1,8 @@
-# path-validation
-This utility package is intended to be used for path validation from any user input (html form for example).
+# path-validation [![npm version](https://badge.fury.io/js/path-validation.svg)](https://badge.fury.io/js/path-validation)
+> This utility package is intended to be used for filesystem path validation from any user input (html form for example).
 `path-validation` does not check the real filesystem structure - check `fs.lstat()` to validate against filesystem.
 
-## isAbsolutePath(str)
+## isAbsolutePath(str, dirSeparator)
 
 Node.js `path.isAbsolute()` seems to be insufficient for input validation since it allows patterns and traversal.
 
@@ -12,6 +12,18 @@ Node.js `path.isAbsolute()` seems to be insufficient for input validation since 
 2. provided path is not empty string
 3. provided path doesn't have disallowed characters (see list below)
 4. provided path resolves to absolute path
+5. provided path match platform specific rules (see list below)
+
+### Linux specific rules
+
+5. a) start with slash
+5. b) does not contain backslash
+
+### Windows specific rules
+
+5. c) start with drive letter
+5. d) does not contain forward slash
+5. e) contain only one colon
 
 ### Disallowed characters
 
@@ -20,7 +32,7 @@ The list of disallowed characters include restriced characters on Linux & Window
 ```
 [   (left square bracket)
 ]   (right square bracket)
-#   (numer sign / hash / pound)
+#   (number sign / hash / pound)
 %   (percent sign)
 &   (ampersand)
 {   (left curly bracket)
@@ -35,7 +47,7 @@ The list of disallowed characters include restriced characters on Linux & Window
 $   (dollar)
 !   (exclamation mark)
 '   (single quote)
-:   (colon - sometimes works, but is actually NTFS Alternate Data Streams)
+:   (colon - allowed on Windows to appear once only)
 @   (at)
 |   (vertical bar or pipe)
 ‘   (backtick)
@@ -44,7 +56,16 @@ $   (dollar)
 "   (double quote)
 +   (plus sign)
 ^   (caret)
+/   (slash - disallowed on Windows only)
+\   (backslash - disallowed on Linux only)
 ```
+
+## isAbsoluteLinuxPath(str)
+Alias to `isAbsolutePath(str, '/')`
+
+## isAbsoluteWindowsPath(str)
+Alias to `isAbsolutePath(str, '\\')`
+
 
 ## Related articles
 
