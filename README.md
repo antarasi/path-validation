@@ -4,8 +4,6 @@
 
 ## isAbsolutePath(str, dirSeparator)
 
-Node.js `path.isAbsolute()` seems to be insufficient for input validation since it allows patterns and traversal.
-
 ### Rules
 
 1. provided path is string
@@ -14,16 +12,16 @@ Node.js `path.isAbsolute()` seems to be insufficient for input validation since 
 4. provided path resolves to absolute path
 5. provided path match platform specific rules (see list below)
 
-### Linux specific rules
+### Linux specific rules (dirSeparator = "/")
 
 5. a) start with slash
 5. b) does not contain backslash
 
-### Windows specific rules
+### Windows specific rules (dirSeparator = "\\")
 
 5. c) start with drive letter
 5. d) does not contain forward slash
-5. e) contain only one colon
+5. e) contain only one colon (after drive letter)
 
 ### Disallowed characters
 
@@ -79,6 +77,11 @@ Alias to `isAbsolutePath(str, '\\')`
 Pull requests are always welcome. Please review and add your test specs for
 [valid](https://github.com/antarasi/path-validation/blob/master/test/specs/valid-paths.spec.js)
 and [invalid](https://github.com/antarasi/path-validation/blob/master/test/specs/invalid-paths.spec.js) paths.
+
+## Alternatives
+
+1. Node.js `path.isAbsolute()`. It seems to be insufficient for input validation since it allows glob patterns and traversal.
+2. NPM package [path-is-absolute](https://www.npmjs.com/package/path-is-absolute). Not sufficeint for input validation since the only thing it checks for posix path is if it starts with '/' (slash). Therefore backspace, null byte, patters and traversal are allowed.
 
 ## License
 
