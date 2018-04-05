@@ -1,4 +1,4 @@
-# path-validation [![npm version](https://badge.fury.io/js/path-validation.svg)](https://badge.fury.io/js/path-validation)
+# path-validation [![npm version](https://badge.fury.io/js/path-validation.svg)](https://badge.fury.io/js/path-validation) [![Build Status](https://travis-ci.org/antarasi/path-validation.svg?branch=master)](https://travis-ci.org/antarasi/path-validation)
 > This utility package is intended to be used for filesystem path validation from any user input (html form for example).
 `path-validation` does not check the real filesystem structure - check `fs.lstat()` to validate against filesystem.
 
